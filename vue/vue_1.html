@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>vue_1</title>
+</head>
+
+<body>
+    <link rel="import" href="./top.html" />
+    <!-- <div id=" app">
+    {{message}}<br>
+    time : {{localTime}}
+    </div> -->
+</body>
+<script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello world',
+            localTime: '页面加载于' + new Date().toLocaleTimeString()
+        }
+
+    })
+</script>
+
+</html>

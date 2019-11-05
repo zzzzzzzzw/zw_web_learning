@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<style>
+    span::before {
+        content: "smyhvae";
+        color: red;
+        background-color: pink;
+        width: 50px;
+        height: 50px;
+        display: inline-block;
+    }
+
+    span::after {
+        content: "永不止步";
+        color: yellowgreen;
+    }
+
+    span {
+        border: 1px solid #000;
+    }
+
+    body {
+        background-color: #666;
+    }
+
+    div {
+        font-size: 100px;
+        text-align: center;
+        font-weight: bold;
+        font-family: "Microsoft Yahei";
+        color: #666;
+    }
+
+    .ao {
+        text-shadow: -1px -1px 1px #000, 1px 1px 1px #fff;
+    }
+
+    .bo {
+        text-shadow: -1px -1px -1px #fff, 1px 1px 1px #000;
+    }
+</style>
+
+<body>
+    <!-- <span>
+        生命一号
+    </span> -->
+    <div class="ao">
+        阴影1
+    </div>
+    <div class="bo">
+        阴影2
+    </div>
+</body>
+
+</html>

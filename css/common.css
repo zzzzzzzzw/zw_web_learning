@@ -1,0 +1,58 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+fieldset,
+legend,
+button,
+input,
+textarea,
+th,
+td {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s linear 0s;
+}
+
+body,
+input,
+textarea,
+select {
+    color: rgb(68, 72, 102);
+    font: 12px/1.5 "Hiragino Sans GB", "Microsoft YaHei", 宋体, Arial, Tahoma, Helvetica, Geneva, sans-serif;
+}
+
+article,
+aside,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
+    display: block;
+}
+
+
+* {
+    transition: all 0.1s linear 0s;
+}

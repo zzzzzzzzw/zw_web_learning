@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0px;
+        box-sizing: border-box;
+    }
+
+
+    .box2 {
+        clear: both;
+        overflow: hidden;
+    }
+
+    .cl {
+        height: 1px;
+        clear: both;
+    }
+
+    li {
+        float: left;
+        width: 200px;
+        height: 100px;
+        background-color: pink;
+        border: 2px;
+    }
+
+    .div1 {
+        text-align: center;
+        width: 200px;
+        height: 200px;
+        background-color: blueviolet;
+        border: 1px solid red;
+    }
+
+    .div2 {
+        /* 相对定位 */
+        position: relative;
+        top: -1px;
+        width: 200px;
+        height: 200px;
+        border: 1px solid red;
+        background-color: blueviolet;
+    }
+</style>
+
+<body>
+    <div class="box1">
+        <ul>
+            <li>测试1</li>
+            <li>测试1</li>
+            <li>测试1</li>
+            <li>测试1</li>
+            <li>测试1</li>
+        </ul>
+    </div>
+    <div class="cl"></div>
+    <div class="box2">
+        <ul>
+            <li>侧式2</li>
+            <li>侧式2</li>
+            <li>侧式2</li>
+            <li>侧式2</li>
+            <li>侧式2</li>
+        </ul>
+    </div>
+
+    <div>
+        <p></p>
+        <p></p>
+        <div class="cls"></div>
+    </div>
+
+    <div class="div1">有生之年</div>
+    <div class="div2">狭路相逢</div>
+</body>
+
+</html>

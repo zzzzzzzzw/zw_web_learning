@@ -30,7 +30,7 @@ td {
 a {
     cursor: pointer;
     text-decoration: none;
-    transition: background-color 0.2s linear 0s;
+    transition: background-color 0s linear 0s;
 }
 
 body,
@@ -54,5 +54,9 @@ section {
 
 
 * {
-    transition: all 0.1s linear 0s;
+    transition: all 0s linear 0s;
+}
+
+li {
+    list-style: none;
 }

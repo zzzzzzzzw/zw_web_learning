@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .box {
+        width: 100px;
+        height: 100px;
+        background: pink;
+        position: absolute;
+        border: 1px solid;
+    }
+</style>
+
+<body>
+    <button>
+        动画开始
+    </button>
+    <div class="box">
+
+    </div>
+    <script>
+        var button = document.querySelector("button");
+        var div = document.querySelector("div");
+        var left = div.style.left
+        button.onclick = function () {
+            console.log(parseInt(left))
+            setInterval(function () {
+                div.style.left = div.offsetLeft + 100 + "px"
+            }, 500)
+        }
+    </script>
+
+</body>
+
+</html>

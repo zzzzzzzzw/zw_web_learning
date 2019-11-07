@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" manifest="./cache.appcache">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<label for="">
+    用户名: <input type="text" class="username">
+</label>
+<label for="">
+    密码: <input type="text" class="pwd">
+</label>
+<label for="">
+    <input type="checkbox" class="checked">记住密码
+</label>
+<label for="">
+    <input type="button" value="登录" class="login">
+</label>
+<label for="">
+    <input type="button" value="测试网络连接" class="test">
+</label>
+<script>
+    var username = document.querySelector(".username")
+    var pwd = document.querySelector(".pwd")
+    var checked = document.querySelector(".checked")
+    var login = document.querySelector(".login")
+    var test = document.querySelector(".test")
+    var storage = window.localStorage
+    // debugger
+    login.onclick = function () {
+        if (checked.checked) {
+            // 如果 checked选中 则往硬盘中存数据
+            storage.setItem("username", username.value);
+            storage.setItem("pwd", pwd.value);
+        } else {
+            // 清除数据
+            storage.removeItem("username")
+            storage.removeItem("pwd")
+        }
+    }
+    window.onload = function () {
+        username.value = storage.getItem("username")
+        pwd.value = storage.getItem("pwd")
+    }
+
+    // 添加网络监听
+    test.onclick = function () {
+        // debugger
+        window.addEventListener('online', function () {
+            alert("网络连接正常")
+        })
+        window.addEventListener("offline", function () {
+            alert("网络连接断开")
+        })
+    }
+</script>
+
+<body>
+
+</body>
+
+</html>

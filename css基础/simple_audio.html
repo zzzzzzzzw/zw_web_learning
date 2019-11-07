@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/common.css">
+    <title>Document</title>
+</head>
+<style>
+    figcaption {
+        text-align: center;
+        line-height: 150px;
+        font-family: "Microsoft YaHei";
+        font-size: 24px;
+    }
+
+    .player {
+        width: 700px;
+        height: 1000px;
+        margin: 10px auto;
+        border: 1px solid red;
+        background: url(../image/u=1796411554,1257847298&fm=26&gp=0.jpg) center no-repeat #000;
+        background-size: auto 100%;
+        position: relative;
+        border-radius: 20px;
+    }
+
+    .player video {
+        height: 100%;
+        display: block;
+        margin: auto;
+    }
+
+    .controls {
+        width: 680px;
+        height: 40px;
+        background-color: rgba(255, 255, 0, 0.3);
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        border-radius: 10px;
+    }
+
+    .switch {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        left: 10px;
+        top: 10px;
+        text-align: center;
+        line-height: 20px;
+        color: yellow;
+    }
+
+    /*进度条*/
+    .progress {
+        width: 640px;
+        height: 10px;
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.4);
+        left: 20px;
+        top: 15px;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    /* 当前进度*/
+    .current-progress {
+        width: 50%;
+        height: 10px;
+        background-color: #fff;
+    }
+
+    /* 时间模块*/
+    .time {
+        width: 120px;
+        height: 20px;
+        text-align: center;
+        line-height: 20px;
+        color: #fff;
+        position: absolute;
+        left: 510px;
+        top: 10px;
+        font-size: 12px;
+
+    }
+
+    /*全屏*/
+    .extend {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+
+        right: 20px;
+        top: 10px;
+
+        text-align: center;
+        line-height: 20px;
+        color: yellow;
+    }
+</style>
+
+<body>
+    <figure>
+        <!-- 标题 -->
+        <figcaption>
+            视频案例
+        </figcaption>
+        <div class="player">
+            <video src="http://smvideo.duowan.com/video_upload/15981.mp4"></video>
+            <!-- 控制条 -->
+            <div class="controls">
+                <!-- 播放暂停 -->
+                <a href="#" class="switch icon-play"></a>
+                <div class="progress">
+                    <!-- 当前进度 -->
+                    <div class="current-progress"></div>
+                </div>
+                <div class="time">
+                    <span class="current-time">00:00:00</span>
+                    <span class="total-time">00:00:00</span>
+                </div>
+                <a href="#" class="extend icon-resize-full"></a>
+            </div>
+        </div>
+    </figure>
+</body>
+
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/common.css">
+    <title>js原生轮播图</title>
+</head>
+<style>
+    .all {
+        width: 800px;
+        height: 240px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        margin: 100px auto;
+        position: relative;
+    }
+
+    .screen {
+        width: 800px;
+        height: 240px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .screen li {
+        width: 800px;
+        height: 240px;
+        overflow: hidden;
+        float: left;
+    }
+
+    .screen ul {
+        position: absolute;
+        width: 3000px;
+        left: 0px;
+        top: 0px;
+    }
+
+    .all ol {
+        position: absolute;
+        right: 355px;
+        bottom: 10px;
+        line-height: 20px;
+        text-align: center;
+    }
+
+    .all ol li {
+        /* float: left; */
+        width: 20px;
+        height: 20px;
+        background: #fff;
+        border: 1px solid #ccc;
+        /* position: absolute; */
+        /* left: 400px; */
+        bottom: 10px;
+        /* margin-left: 10px; */
+        cursor: pointer;
+        border-radius: 10px;
+    }
+
+    .all ol li.current {
+        background: yellow;
+    }
+
+    #selector_1 {
+        margin-right: 10px;
+    }
+
+    #selector_2 {
+        margin-right: 10px;
+    }
+
+    #arr span {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        left: 50px;
+        top: 50%;
+        margin-top: -20px;
+        background: #000;
+        cursor: pointer;
+        text-align: center;
+        font-weight: bold;
+        font-family: '黑体';
+        font-size: 30px;
+        color: #fff;
+        /* 设置不透明度 */
+        opacity: 0.3;
+        border: 1px solid #fff;
+    }
+
+    #arr #right {
+        right: 50px;
+        left: auto;
+    }
+</style>
+
+<body>
+    <script>
+        window.onload = function () {
+            // 需求无缝滚动
+            var all = document.getElementById("all");
+            var screen = all.firstElementChild || all.firstChild
+            var imgWidth = screen.offsetWidth
+            var ul = screen.firstElementChild || screen.firstChild
+            var ol = screen.children[1]
+            var div = screen.lastElementChild || screen.lastChild
+            // 复制第一张图片到 ul的最后
+            var cloneLi = ul.children[0].cloneNode(true)
+
+            // ul.push(cloneLi);
+            ul.appendChild(cloneLi);
+            for (let i = 0; i < ul.children.length - 1; i++) {
+                var olNewLi = document.createElement("li")
+                olNewLi.innerHTML = i + 1;
+                olNewLi.id = "selector_" + (i + 1);
+                ol.appendChild(olNewLi)
+            }
+            // 设置当前的选中的小框 的class = current
+            var oldLiArr = ol.children;
+            oldLiArr[0].className = "current";
+
+            for (let i = 0; i < oldLiArr.length; i++) {
+                //自定义索引值绑定到元素上
+                oldLiArr[i].index = i;
+                oldLiArr[i].onmouserover = function () {
+                    for (let j = 0; j < oldLiArr.length; j++) {
+                        const element = oldLiArr[j];
+                    }
+                }
+            }
+
+            // 添加定时器
+            var timer = setInterval(autoPlay, 2000);
+
+            // 两个定时器一个定义图片 一个定义小方块
+            var key = 0;
+            var square = 0;
+
+            function autoPlay() {
+                key++;
+                if (key > oldLiArr.length - 1) {
+                    //图片已经滑到了最后一张,接下来跳转至第一张
+                    ul.style.left = 0;
+                    key = 1;
+                }
+                animate(ul, -key * imgWidth)
+
+                // square++;
+                // if (square > oldLiArr.length - 1) {
+                //     square = 0;
+                // }
+
+                for (var i = 0; i < oldLiArr.length; i++) {
+                    oldLiArr[i].className = "";
+                }
+            }
+
+            // 轮播
+            function animate(ele, target) {
+                // 一个element只能有一个定时器
+                // 我们可以把元素的定时器当作他的一个属性
+                clearInterval(ele.timer);
+                // 如果 目标值大于当前值 则取正 小于当前值则取负
+                let speed = target > ele.offsetLeft ? 10 : -10;
+                ele.timer = setInterval(function () {
+                    //先获取当前值与 目标值之间的差距
+                    let val = target - ele.offsetLeft;
+                    if (Math.abs(val) < Math.abs(speed)) {
+                        ele.style.left = target + "px";
+                        clearInterval(ele.timer);
+                    } else {
+                        ele.style.left = ele.offsetLeft + speed + "px";
+                    }
+                }, 10)
+            }
+        }
+    </script>
+    <div class="all" id="all">
+        <div class="screen" id="screen">
+            <ul>
+                <li><img src="../image/banner_1.jpg" alt=""></li>
+                <li><img src="../image/banner_2.jpg" alt=""></li>
+                <li><img src="../image/banner_3.jpg" alt=""></li>
+            </ul>
+            <ol>
+                <!-- js动态生成小圆框 -->
+            </ol>
+            <div id="arr">
+                <span id="left">
+                    < </span> <span id="right">
+                        >
+                </span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

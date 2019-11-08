@@ -34,7 +34,7 @@
 
     .screen ul {
         position: absolute;
-        width: 3000px;
+        width: 4000px;
         left: 0px;
         top: 0px;
     }
@@ -103,16 +103,18 @@
         window.onload = function () {
             // 需求无缝滚动
             var all = document.getElementById("all");
+            var spanArr = document.getElementsByTagName("span");
             var screen = all.firstElementChild || all.firstChild
             var imgWidth = screen.offsetWidth
             var ul = screen.firstElementChild || screen.firstChild
             var ol = screen.children[1]
             var div = screen.lastElementChild || screen.lastChild
             // 复制第一张图片到 ul的最后
-            var cloneLi = ul.children[0].cloneNode(true)
-
+            // var cloneLi = ul.children[0].cloneNode(true)
+            var ulNewLi = ul.children[0].cloneNode(true);
+            ul.appendChild(ulNewLi);
             // ul.push(cloneLi);
-            ul.appendChild(cloneLi);
+            // ul.appendChild(cloneLi);
             for (let i = 0; i < ul.children.length - 1; i++) {
                 var olNewLi = document.createElement("li")
                 olNewLi.innerHTML = i + 1;
@@ -126,15 +128,15 @@
             for (let i = 0; i < oldLiArr.length; i++) {
                 //自定义索引值绑定到元素上
                 oldLiArr[i].index = i;
-                oldLiArr[i].onmouserover = function () {
+                oldLiArr[i].onmouseover = function () {
                     for (let j = 0; j < oldLiArr.length; j++) {
                         const element = oldLiArr[j];
                     }
                 }
             }
 
-            // 添加定时器
-            var timer = setInterval(autoPlay, 2000);
+            // 添加定时器 两秒钟掉一次移动图片的方法
+            var timer = setInterval(autoPlay, 1000);
 
             // 两个定时器一个定义图片 一个定义小方块
             var key = 0;
@@ -142,21 +144,71 @@
 
             function autoPlay() {
                 key++;
-                if (key > oldLiArr.length - 1) {
+                if (key > oldLiArr.length) {
                     //图片已经滑到了最后一张,接下来跳转至第一张
                     ul.style.left = 0;
                     key = 1;
                 }
                 animate(ul, -key * imgWidth)
-
-                // square++;
-                // if (square > oldLiArr.length - 1) {
-                //     square = 0;
-                // }
+                square++
+                if (square > oldLiArr.length - 1) {
+                    square = 0;
+                }
 
                 for (var i = 0; i < oldLiArr.length; i++) {
                     oldLiArr[i].className = "";
                 }
+                oldLiArr[square].className = "current";
+            }
+
+            all.onmouseover = function () {
+                div.style.display = "block";
+                clearInterval(timer);
+            }
+
+            all.onmouseout = function () {
+                div.style.display = "none";
+                timer = setInterval(autoPlay, 1000)
+            }
+
+
+            //鼠标放在原点上 执行
+            for (let i = 0; i < oldLiArr.length; i++) {
+                let element = oldLiArr[i];
+                element.index = i;
+                element.onclick = function () {
+                    for (let j = 0; j < oldLiArr.length; j++) {
+                        oldLiArr[j].className = "";
+                    }
+                    this.className = "current";
+                    key = square = i;
+                    animate(ul, -i * imgWidth)
+                }
+            }
+
+            // 左右移动
+            spanArr[0].onclick = function () {
+                key--;
+                if (key < 0) {
+                    // 移到最后一张 
+                    ul.style.left = -imgWidth * (oldLiArr.length) + "px";
+                    key = oldLiArr.length - 1;
+                }
+                animate(ul, -key * imgWidth);
+                //控制小圆圈
+                square--;
+                if (square < 0) {
+                    square = oldLiArr.length - 1;
+                }
+                for (let i = 0; i < oldLiArr.length; i++) {
+                    oldLiArr[i].className = ""
+                }
+                oldLiArr[square].className = "current"
+            }
+
+            spanArr[1].onclick = function () {
+                //右侧的和定时器一模一样
+                autoPlay();
             }
 
             // 轮播

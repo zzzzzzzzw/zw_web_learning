@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vue-resource-1.3.4.js"></script>
+    <title>Document</title>
+</head>
+<div id="app">
+    <input type="button" value="get请求测试" @click="getInfo"><br>
+    <input type="button" value="post请求测试" @click="postInfo"><br>
+    <input type="button" value="json请求测试" @click="jsonInfo"><br>
+</div>
+</div>
+
+<body>
+    <script>
+        var vue = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+                getInfo() {
+                    this.$http.get('http://localhost:9002/vue/forGet', {
+                        responseType: 'json'
+                    }, {
+                        emulateJSON: true
+                    }).then(function (result) {
+                        console.log(result.data)
+                    })
+                },
+                postInfo() {
+                    // 手动发起的post,默认没有数据格式
+                    this.$http.post('http://localhost:9002/vue/forPost', {}, {
+                        emulateJSON: true
+                    }).then(result => {
+                        console.log(result.body)
+                    })
+                },
+                jsonInfo() {
+                    // 手动发起的post,默认没有数据格式
+                    this.$http.post('http://localhost:9002/vue/forPost').then(result => {
+                        console.log(result.body)
+                    })
+                }
+
+            }
+        })
+    </script>
+</body>
+
+</html>

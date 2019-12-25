@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.min.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+</head>
+<style>
+</style>
+
+<body>
+    <div id="app">
+        <!-- <h1 :class="{thin:flag,active:true}">
+            馒头他不香吗
+        </h1>
+        <span v-for="(item,i) in list">索引值--{{i}}--value{{item}}</span> -->
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">添加标题</h3>
+            </div>
+        </div>
+        <div class="form-group form-inline">
+            <label for="">
+                id:
+                <input type="text" class="input-default" name="" id="" v-model="id">
+            </label>
+            <label for="">
+                Name:
+                <input type="text" class="input-default" name="" id="" v-model="name">
+            </label>
+            <label for="">
+                <input type="button" name="" id="" value="新增" class="btn btn-primary" @click="add()">
+            </label>
+        </div>
+
+        <table class=" table table-bordered table-hover table-striped ">
+            <thead class=" thead-inverse">
+                <tr>
+                    <th>Id</th>
+                    <th>name</th>
+                    <th>CTime</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in list" :key="item.id">
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td scope="row">{{item.date}}</td>
+                    <td scope="row"> <a href="" @click.prevent="del(item.id)">{{item.operation}}</a> </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        var date = new Date();
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                id: '',
+                name: '',
+                flag: true,
+                list: [{
+                    id: 1,
+                    name: '奔驰',
+                    date: date,
+                    operation: '删除'
+                }, {
+                    id: 2,
+                    name: '宝马',
+                    date: date,
+                    operation: '删除'
+                }]
+            },
+            methods: {
+                add() {
+                    let cat = {
+                        id: this.id,
+                        name: this.name,
+                        date: date,
+                        operation: '删除'
+                    }
+                    this.list.push(cat);
+                    this.id = this.name = ''
+                },
+                del(id) {
+                    // this.list.some((item, i) => {
+                    //     if (id === item.id) {
+                    //         this.list.splice(i, 1)
+                    //         return true;
+                    //     }
+                    // })
+                    let index = this.list.findIndex(item => {
+                        if (item.id == id) {
+                            return true;
+                        }
+                    })
+                    // 
+                    this.list.splice(index, 1)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

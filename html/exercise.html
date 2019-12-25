@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dom练习</title>
+</head>
+<style>
+    .box {
+        width: 200px;
+        height: 200px;
+        background: #666;
+    }
+
+    .hide {
+        display: none;
+    }
+</style>
+
+<body>
+    <div>
+        <button id="btn">隐藏</button>
+    </div>
+    <div class="box">
+
+    </div>
+    <script>
+        var button = document.getElementsByTagName("button")[0];
+        var box = document.getElementsByClassName("box")[0];
+        button.onclick = function () {
+            box.className = "hide";
+        }
+    </script>
+</body>
+
+</html>

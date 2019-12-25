@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div v-weight="900" v-size="100">{{msg | msgFormat()}}</div>
+    </div>
+    <script>
+        Vue.filter('msgFormat', function (msg) {
+            return msg.replace(/单纯/g, '疯狂')
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'a单纯a'
+            },
+            methods: {},
+            filters: {
+                //定义私有过滤器
+            },
+            directives: {
+                // 自定义私有指令
+                'weight': {
+                    bind: function (el, binding) {
+                        el.style.fontWeight = binding.value
+                    }
+                },
+                'size': function (el, binding) {
+                    el.style.fontSize = parseInt(binding.value) + 'px'
+                }
+            }
+        })
+
+        // document.getElementById().focus();
+        // 参数一 :指令的名称 注意:不需要添加 v- 开头 但是在调用的时候必须加上 v- 前缀
+        // 参数二: 是一个对象,是一些相关的函数
+        Vue.directive('focus', {
+            bind: function (el) {
+                // 每当指令绑定到元素上的时候,会执行这个指令
+                // 在每个函数中第一个参数 必须是 el,表示 被绑定的那个元素 代表原生的js对象 类似于 getElementById
+                // 在元素刚绑定的时候调用参数,还没有 插入到Dom中去这时候使用 focus() 方法没用
+            },
+            inserted: function (el) {
+                // 表示元素插入到dom的时候,会执行inserted 函数
+                el.focus()
+            },
+            updated: function (el) {
+                // 当VNode更新的时候,会执行updated,会触发多次
+            }
+        })
+        Vue.directive('color', {
+            bind: function (el, binding) {
+                el.style.color = binding.value
+
+            }
+        })
+    </script>
+</body>
+
+</html>

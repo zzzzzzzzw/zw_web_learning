@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.min.js"></script>
+    <title>子组件传值给父组件</title>
+</head>
+
+<body>
+    <div id="app">
+        <component :is="'title_1'" @show="show">
+        </component>
+        <input type="text" name="content" v-model="content">
+        <input type="text" name="user" id="" v-model="user">
+        <input type="button" value="立即评论" @click="add">
+
+        <ul>
+            <li v-for="item in list" :key="item.id">
+                <span>评论人:{{item.user}}</span>
+                <span>评论内容:{{item.content}}</span>
+            </li>
+        </ul>
+    </div>
+    <template id="title">
+        <div>
+            <h1>这是子组件</h1>
+            <button type="reset" @click="show">子组件</button>
+        </div>
+    </template>
+</body>
+<script>
+    var vue = new Vue({
+        el: '#app',
+        data: {
+            user: '',
+            content: '',
+            list: []
+        },
+        methods: {
+            show() {
+                console.log('调用了父组建的show方法')
+            },
+            add() {
+                let item = {
+                    id: Date.now(),
+                    user: this.user,
+                    content: this.content
+                }
+                let list = JSON.parse(localStorage.getItem('comments') || '[]')
+                list.unshift(item)
+                localStorage.setItem('comments', JSON.stringify(list))
+                this.user = ''
+                this.content = ''
+                console.log(list)
+            },
+            loadComments() {
+                this.list = JSON.parse(localStorage.getItem('comments') || '[]')
+            }
+        },
+        created() {
+            this.loadComments()
+        },
+        components: {
+            title_1: {
+                template: '#title',
+                methods: {
+                    show() {
+                        console.log('调用了子组件的show方法')
+                        this.$emit('show')
+                    }
+                }
+            }
+        }
+    })
+</script>
+
+</html>

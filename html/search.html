@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <link rel="stylesheet" href="../css/common.css"> -->
+    <title>搜索框</title>
+</head>
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .box {
+        width: 500px;
+        margin: 200px auto;
+    }
+
+    ul {
+        width: 392px;
+        padding: 5px;
+        list-style: none;
+        border: 1px solid red;
+    }
+
+    li:hover {
+        background-color: red;
+    }
+
+    input {
+        width: 400px;
+    }
+
+    button {
+        width: 70px;
+    }
+</style>
+
+<body>
+    <div class="box">
+        <input type="text" name="" id="">
+        <button>搜索</button>
+    </div>
+    <script>
+        var arr = ["a", "ab", "abc", "abcd", "aa", "aaa"];
+        var box = document.getElementsByTagName("div")[0];
+        var input = box.children[0];
+        input.onkeyup = function () {
+            var newArr = [];
+            // for (let i = 0; i < array.length; i++) {
+            //     const element = array[i];
+            // }
+            arr.forEach((ele, i) => {
+                if (ele.indexOf(this.value) === 0) {
+                    newArr.push("<li>" + ele + "</li>");
+                }
+            })
+
+            var str = newArr.join("");
+
+            // 判断之前是否有元素,有先删除
+            if (box.getElementsByTagName("ul")[0]) {
+                box.removeChild(box.children[2]);
+            }
+            // 如果newArr为空则直接返回
+            if (this.value.length === 0 || newArr.length === 0) {
+                return;
+            } else {
+                var ul = document.createElement("ul");
+                ul.innerHTML = str;
+                box.appendChild(ul);
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        display: flex;
+        justify-content: center;
+    }
+</style>
+
+
+<body>
+
+    <script>
+        function Person() {
+            // 这是 Person的构造函数
+            // Person中有一个 Prototype指向的原型
+            // Person 的_proto_ 指向了父类的 Prototype 如果没有继承 more就是指向的 所有类的父类 Object
+            // Person 中的 construct 指向了 构造函数
+        }
+        var p = new Person();
+        // p是 Person的实例 实例 的_proto_指向了 prototype 
+        // es6 reduce 写法 
+        var arr = [1, 2, 3, 4, 5]
+
+        function addNumbers(...numbers) {
+            return numbers.reduce((sum, next) => {
+                return sum + next
+            })
+        }
+
+        console.log(addNumbers(1, 2, 3))
+
+        function logImg(src) {
+            const promise = new Promise(function () {
+                const img = document.createElement("img");
+                img.onload = function () {
+                    resolve(img)
+                }
+                img.onerror = function () {
+                    rejected('加载图片失败')
+                }
+            });
+            return promise;
+        }
+        const src1 = 'https://www.imooc.com/static/img/index/logo_new.png'
+        const src2 = 'https://img1.mukewang.com/545862fe00017c2602200220-100-100.jpg'
+        const load = async function () {
+            const result1 = await loadImg();
+            console.log(result1)
+            const result2 = await loadImg(src2)
+            console.log(result2)
+        }
+    </script>
+</body>
+
+</html>

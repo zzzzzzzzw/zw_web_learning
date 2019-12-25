@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>使用flex布局</title>
+</head>
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .layout article div {
+        height: 100px;
+    }
+
+    .left-center-right {
+        display: flex;
+    }
+
+    .layout.flex .left {
+        width: 300px;
+        background: red;
+    }
+
+    .layout.flex .center {
+        flex: 1;
+        background: green;
+    }
+
+    .layout.flex .right {
+        width: 300px;
+        background: blue;
+    }
+</style>
+
+<body>
+    <section class="layout flex" id="box">
+        <article class="left-center-right">
+            <div class="left">left</div>
+            <div class="center">center</div>
+            <div class="right">right</div>
+        </article>
+    </section>
+    <script>
+        var box = document.getElementById("box");
+        var width = window.getComputedStyle(box).getPropertyValue("width");
+        console.log(width);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.min.js"></script>
+    <title>Document</title>
+</head>
+<div id="app">
+    <button value="登录" @click.prevent="componentName='login'">登录</button><br>
+    <button value="注册" @click.prevent="componentName='register'">注册</button><br>
+    <transition name="" mode="">
+        <component :is="componentName" v-bind:msg="msg">
+        </component>
+    </transition>
+
+</div>
+<template id="temp">
+    <div>
+        <h3>这是通过template在外部创建的组建</h3>
+    </div>
+
+</template>
+<template id="login">
+    <div>
+        {{msg}}
+        <input type="button" value="登录" style="color: red;" />
+    </div>
+</template>
+<template id="register">
+    <div>
+        <input type="button" value="注册" style="color: black;" />
+    </div>
+</template>
+
+<body>
+    <script>
+        var company_1 = Vue.extend({
+            template: '<h3>这是用vue-extend创建出来的组建</h3>'
+        })
+        Vue.component('com1', company_1)
+
+        Vue.component('com2', Vue.extend({
+            template: '<h3>这是vue-company创建的组建</h3>'
+        }))
+
+        Vue.component('temp', {
+            template: '#temp'
+        })
+
+        var vue = new Vue({
+            el: "#app",
+            data: {
+                componentName: 'login',
+                msg: '这是父的msg'
+            },
+            components: {
+                login: {
+                    template: '#login',
+                    props: ['msg'],
+                    data: function () {
+                        return {}
+                    }
+                },
+                register: {
+                    template: '#register'
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

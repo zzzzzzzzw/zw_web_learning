@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <button>运动到left = 400px</button>
+    <div></div>
+
+    <script>
+        var btn = document.getElementsByTagName("button")[0]
+        var div = document.getElementsByTagName("div")[0]
+        btn.onclick = function () {
+            // offset 与left的区别
+            // offsetLeft 可以计算没有定位的盒子到左边的距离 ,而style.left可能会出问题  
+            // offsetLeft 只读 left可读写
+            // div.style.left = div.offsetLeft + (400 - div.offsetLeft) / 10 + "px";
+            animate(div, 400);
+            let {
+                foo,
+                bar
+            } = {
+                bar: '我是 bar 的值',
+                foo: '我是 foo 的值'
+            }
+            console.log(foo + ',' + bar);
+        }
+
+        function animate(ele, target) {
+            clearInterval(ele.timer)
+
+            ele.timer = setInterval(function () {
+                let step = (target - ele.offsetLeft) / 10;
+                // 步长进行缓步加工,步长应该是越来越小 直到最小
+                console.log(step)
+                step < 1 ? step = 1 : step = Math.floor(step)
+                console.log(step)
+                div.style.left = div.offsetLeft + step + "px"
+                // 如 step 大于  target-当前位置 则直接到 目标处
+                if (Math.abs(target - ele.offsetLeft) <= Math.abs(step)) {
+                    ele.style.left = target + "px";
+                    clearInterval(ele.timer)
+                    console.log(ele.offsetLeft)
+                }
+            }, 30)
+        }
+    </script>
+</body>
+
+</html>

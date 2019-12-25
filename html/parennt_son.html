@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .father {
+        width: 100px;
+    }
+
+    .son {
+        width: 100px;
+        height: 100px;
+        margin-top: 10px;
+        background: red;
+    }
+</style>
+
+<body>
+    <!-- 此时的父的margin_top和子的margin_top的margin_top是重叠的 原因是parent没有border -->
+    <!-- margin 这个属性本质上是表达的兄第之间的距离,最好不要用这个来表示父子之间的距离 -->
+    <!-- 如果要表达父子之间的距离,我们一定要善于使用父的padding,而不是儿子的margin -->
+    <div class="father">
+        <div class="son"></div>
+    </div>
+</body>
+
+</html>

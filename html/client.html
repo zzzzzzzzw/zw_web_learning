@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        // 函数 : 获取浏览器的宽高(可视区域)
+        function client() {
+            if (window.innerHeight !== undefined) {
+                // ie9以上写法
+                return {
+                    'innerHeight': window.innerHeight,
+                    'innerWidth': window.innerWidth
+                }
+            } else if (document.compatMode === "CSS1Compat") {
+                // 标准模式的写法
+                return {
+                    'innerWidth': document.documentElement.clientWidth,
+                    'innerHeight': document.documentElement.clientHeight
+                }
+            } else {
+                // 没有dtd的写法
+                return {
+                    'innerWidth': document.body.clientWidth,
+                    'innerHeight': document.body.clientHeight
+                }
+            }
+        }
+
+        window.onresize = function () {
+            var height = client().innerHeight;
+            var width = client().innerWidth;
+            if (width > 960) {
+                console.log(client().innerHeight)
+                console.log(client().innerWidth)
+            } else if (client().width > 640) {
+                console.log(client().innerHeight)
+                console.log(client().innerWidth)
+            }
+        };
+    </script>
+</body>
+
+</html>

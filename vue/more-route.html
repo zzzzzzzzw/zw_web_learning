@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vue-router-3.0.1.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <router-link to="/account"></router-link>  -->
+        <router-view>
+        </router-view>
+    </div>
+    <template id="account">
+        <div>这是父组件<br>
+            <router-link to="/account/login">子组件1</router-link><br>
+            <router-link to="/account/register">子组件2</router-link>
+            <router-view></router-view>
+        </div>
+    </template>
+    布局
+
+</body>
+<script>
+    var account = {
+        template: '#account'
+    }
+
+    var children1 = {
+        template: " <div>这是子组件1</div>"
+    }
+    var children2 = {
+        template: " <div>这是子组件2</div>"
+    }
+
+    var router = new VueRouter({
+        routes: [{
+            path: '/',
+            redirect: "/account"
+        }, {
+            path: '/account',
+            component: account,
+            children: [{
+                    path: 'login',
+                    component: children1
+                },
+                {
+                    path: 'register',
+                    component: children2
+                }
+            ]
+        }]
+    })
+
+    var vm = new Vue({
+        el: '#app',
+        router: router
+    })
+</script>
+
+</html>

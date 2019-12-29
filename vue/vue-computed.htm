@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vue-router-3.0.1.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" name="" id="" v-model="firstName"><br>
+        <input type="text" name="" v-model="secondName"><br>
+        <input type="text" name="" v-model="fullName">
+    </div>
+
+</body>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            firstName: '',
+            secondName: ''
+        },
+        computed: {
+            'fullName': function () {
+                return this.firstName + this.secondName
+            }
+        }
+    })
+</script>
+
+</html>
